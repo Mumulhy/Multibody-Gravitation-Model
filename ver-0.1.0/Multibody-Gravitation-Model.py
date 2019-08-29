@@ -5,7 +5,7 @@
 Created on Sat Aug 24 12:09:32 2019
 
 @author: _Mumu, Squirtle
-Environment: base(py37 with pygame)
+Environment: py37 with pygame
 """
 
 import random, math, pygame, sys

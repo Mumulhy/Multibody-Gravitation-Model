@@ -8,19 +8,17 @@ https://www.bilibili.com/video/av64749761
 
 https://github.com/morningyet/simulink_universe_gravitation
 
-原代码语言：Java，使用软件：procesing3.3.5
+原代码语言：Java，使用软件：procesing 3.3.5
 
- 
+***
 
-语言：Python
+语言：Python3
 
-环境：
+环境：pygame 1.9.6、numpy 1.16.2
 
-pygame
+最新版本：0.1.0
 
-numpy
-
- 
+***
 
 参考资料：
 

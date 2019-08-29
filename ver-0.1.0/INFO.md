@@ -4,17 +4,13 @@ Author：_Mumu、Squirtle
 
 Version：0.1
 
- 
+***
 
-语言：Python
+语言：Python3
 
-环境：
+环境：pygame 1.9.6、numpy 1.16.2
 
-pygame
-
-numpy
-
- 
+***
 
 版本信息：
 
