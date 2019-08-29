@@ -12,6 +12,8 @@ https://github.com/morningyet/simulink_universe_gravitation
 
 
 
+
+
 语言：Python
 
 环境：
@@ -19,6 +21,8 @@ https://github.com/morningyet/simulink_universe_gravitation
 pygame
 
 numpy
+
+
 
 
 
