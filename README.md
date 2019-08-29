@@ -10,9 +10,7 @@ https://github.com/morningyet/simulink_universe_gravitation
 
 原代码语言：Java，使用软件：procesing3.3.5
 
-
-
-
+ 
 
 语言：Python
 
@@ -22,9 +20,7 @@ pygame
 
 numpy
 
-
-
-
+ 
 
 参考资料：
 
