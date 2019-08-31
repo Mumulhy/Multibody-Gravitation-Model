@@ -12,7 +12,7 @@ import random, math, pygame, sys
 from pygame.locals import *
 import numpy as np
 
-window_size = width, height = 960, 540  # 设置窗口大小
+window_size = width, height = 1232, 693 # 设置窗口大小
 middle = np.array([width//2,
                    height//2])          # 中心点坐标
 white = (255, 255, 255)                 # 白色
@@ -26,11 +26,11 @@ time_step = 5                           # 计算的时间步长，单位为毫�
 tracking = False                        # 默认不跟踪质量最大的星体
 
 body_list = []      # 星体列表
-max_count = 200     # 初始星体数量
+max_count = 500     # 初始星体数量
 body_count = 0      # 实时形体数量
 max_body = None     # 最大星体
-max_path = 200      # 轨迹长度
-G = 0.02            # 引力常数
+max_path = 400      # 轨迹长度
+G = 0.03            # 引力常数
 den = 1             # 密度
 
 
@@ -128,7 +128,7 @@ class body:
         Input:      None
         Return:     None
         """
-        if len(self.path) == max_path / 4 and body_count > 15:
+        if len(self.path) == max_path / 4 and body_count > 30:
             self.path.pop(0)                        # 控制轨迹长度
         elif len(self.path) == max_path:
             self.path.pop(0)                        # 控制轨迹长度
@@ -389,7 +389,7 @@ if __name__ == "__main__":
     
     for i in range(1, max_count + 1):
         body(i,
-             random.randint(100, 300),          # 初始质量
+             random.randint(50, 150),           # 初始质量
              random.randint(0, width),
              random.randint(0, height),         # 初始坐标
              random.randint(-120, 120)/100,
