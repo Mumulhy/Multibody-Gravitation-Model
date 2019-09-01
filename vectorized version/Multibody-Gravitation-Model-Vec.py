@@ -82,10 +82,8 @@ class universe:
         ones = np.ones((body_count,body_count))
         eyes = np.eye(body_count)
     
-    
         AX2d = G*m*(X*ones - (X*ones).T) / (DIS**3 + eyes)
         AX = np.sum(AX2d, axis = 1)
-    
         AY2d = G*m*(Y*ones - (Y*ones).T) / (DIS**3 + eyes)
         AY = np.sum(AY2d, axis = 1)
     
