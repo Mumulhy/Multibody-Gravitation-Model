@@ -8,11 +8,15 @@ Created on Sun Sept 1 21:45:16 2019
 Environment: py37 with pygame
 """
 
+import random, math, pygame, sys
+from pygame.locals import *
+import numpy as np
+
 NUM, MASS, X, Y, VX, VY = [], [], [], [], [], []
 body_list = []
 body_count = 0
 
-class body:
+class body(object):
     
     """
     Class:      星体
@@ -40,7 +44,7 @@ class body:
 
 
 
-class universe:
+class universe(object):
     
     """
     Class:      宇宙，即向量化的所有星体
@@ -105,7 +109,9 @@ def main():
              random.randint(-120, 120)/100,
              random.randint(-120, 120)/100)     # 初始速度
     body_count = len(body_list)
-    stars = universe(NUM, MASS, X, Y, VX, VY)
+    univ1 = universe(NUM, MASS, X, Y, VX, VY)
+
+    
 
 
 
