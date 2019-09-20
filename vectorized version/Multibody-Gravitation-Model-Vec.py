@@ -14,7 +14,7 @@ import cv2 as cv
 
 random.seed(1)
 
-NUM = np.array([])
+NUM = np.array([], dtype = int)
 MASS, R = np.array([]), np.array([])
 X, Y = np.array([]), np.array([])
 VX, VY = np.array([]), np.array([])
@@ -27,7 +27,7 @@ width, height = 960, 540
 middle = np.array([width//2, height//2])         # 中心点坐标
 
 #body_list = []       # 星体列表
-max_count = 20       # 初始星体数量
+max_count = 100       # 初始星体数量
 #max_body = None      # 最大星体
 #max_path = 150       # 轨迹长度
 G = 0.005             # 引力常数
@@ -176,10 +176,13 @@ def collision(collide_event_list):
         dead_body = collide_body_list.copy()
         dead_body.remove(max_body)
 
-        print("Collide happens! Body", dead_body[0], "was eaten by", max_body, "!")
-        
         body_to_delete.extend(dead_body)
         
+        print("Collide happens! Body", NUM[body_to_delete], "was eaten by", NUM[max_body], "!\n")
+    
+    #Notice! 要降序排列body_to_delete列表，不然在删除最后一个球的时候会出现越界！
+    body_to_delete.sort(reverse = True)
+
     for index in body_to_delete:
         NUM = np.delete(NUM, index)
         MASS = np.delete(MASS, index)
