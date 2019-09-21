@@ -31,14 +31,14 @@ max_count = 100       # 初始星体数量
 #max_body = None      # 最大星体
 #max_path = 150       # 轨迹长度
 G = 0.02              # 引力常数
-den = 1              # 密度
+den = 0.1              # 密度
 
 '''
 class body(object):
     
     """
     Class:      星体
-    CreateObj:  body(num, mass, x, y, vx, vy)   用于创建对象，只存储对象id(self.num)以及颜色(self.col)
+    CreateObj:  body(num, mass, x, y, vx, vy) 	用于创建对象，只存储对象id(self.num)以及颜色(self.col)
     """
     
     def __init__(self, num, mass, x, y, vx, vy):
@@ -53,10 +53,10 @@ class body(object):
         MASS.append(mass)                       # 质量
         r = np.cbrt(mass/den/math.pi*0.75)      # 计算半径
         R.append(r)
-        X.append(x)                             # 横坐标
-        Y.append(y)                             # 纵坐标
-        VX.append(vx)                           # 速度X分量
-        VY.append(vy)                           # 速度Y分量
+        X.append(x) 				            # 横坐标
+        Y.append(y) 				            # 纵坐标
+        VX.append(vx) 				            # 速度X分量
+        VY.append(vy) 				            # 速度Y分量
         self.col = (random.randint(30, 255),
                     random.randint(30, 255),
                     random.randint(30, 255))     # 颜色
@@ -212,17 +212,17 @@ if __name__ == '__main__':
     running = True                          # 程序运行状态
 
     screen = np.zeros((height, width, 3), dtype = np.uint8)
-    
+    '''
     for i in range(max_count):
         create(i,
-               random.randint(100, 500),           # 初始质量
+               random.randint(20, 150),           # 初始质量
                random.randint(0, width),
                random.randint(0, height),         # 初始坐标
                random.randint(-120, 120)/100,
                random.randint(-120, 120)/100)     # 初始速度
-    
-    #create(0, 10000, middle[0], middle[1], 0, 0)          #太阳！
-    #create(1, 10, middle[0]+100, middle[1], 0, -1.5)      #水星！
+    '''
+    create(0, 10000, middle[0], middle[1], 0, 0)          #太阳！
+    create(1, 10, middle[0]+100, middle[1], 0, -1.5)    #水星！
     body_count = len(NUM)
 
     while True:
