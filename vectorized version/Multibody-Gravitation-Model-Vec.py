@@ -31,7 +31,7 @@ max_count = 100       # 初始星体数量
 #max_body = None      # 最大星体
 #max_path = 150       # 轨迹长度
 G = 0.02              # 引力常数
-den = 1              # 密度
+den = 1               # 密度
 
 '''
 class body(object):
@@ -59,7 +59,7 @@ class body(object):
         VY.append(vy)                           # 速度Y分量
         self.col = (random.randint(30, 255),
                     random.randint(30, 255),
-                    random.randint(30, 255))     # 颜色
+                    random.randint(30, 255))    # 颜色
         COLOR.append(self.col)
         body_list.append(self)
 '''
@@ -68,16 +68,16 @@ def create(num, mass, x, y, vx, vy):
     global NUM, MASS, R, X, Y, VX, VY, COLOR
 
     NUM = np.append(NUM, num)
-    MASS = np.append(MASS, mass)                       # 质量
+    MASS = np.append(MASS, mass)            # 质量
     r = np.cbrt(mass/den/math.pi*0.75)      # 计算半径
-    R = np.append(R, r)                             # 半径
-    X = np.append(X, x)                             # 横坐标
-    Y = np.append(Y, y)                             # 纵坐标
-    VX = np.append(VX, vx)                           # 速度X分量
-    VY = np.append(VY, vy)                           # 速度Y分量
+    R = np.append(R, r)                     # 半径
+    X = np.append(X, x)                     # 横坐标
+    Y = np.append(Y, y)                     # 纵坐标
+    VX = np.append(VX, vx)                  # 速度X分量
+    VY = np.append(VY, vy)                  # 速度Y分量
     col = (random.randint(30, 255),
-                random.randint(30, 255),
-                random.randint(30, 255))    # 颜色
+           random.randint(30, 255),
+           random.randint(30, 255))         # 颜色
     COLOR.append(col)
 
 def move_pos():
@@ -215,7 +215,7 @@ if __name__ == '__main__':
     
     for i in range(max_count):
         create(i,
-               random.randint(100, 500),           # 初始质量
+               random.randint(100, 500),          # 初始质量
                random.randint(0, width),
                random.randint(0, height),         # 初始坐标
                random.randint(-120, 120)/100,
