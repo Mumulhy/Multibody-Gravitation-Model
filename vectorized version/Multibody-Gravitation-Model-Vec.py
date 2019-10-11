@@ -31,7 +31,7 @@ max_count = 100       # 初始星体数量
 #max_body = None      # 最大星体
 #max_path = 150       # 轨迹长度
 G = 0.02              # 引力常数
-den = 1              # 密度
+den = 1               # 密度
 
 '''
 class body(object):
@@ -59,7 +59,7 @@ class body(object):
         VY.append(vy)                           # 速度Y分量
         self.col = (random.randint(30, 255),
                     random.randint(30, 255),
-                    random.randint(30, 255))     # 颜色
+                    random.randint(30, 255))    # 颜色
         COLOR.append(self.col)
         body_list.append(self)
 '''
@@ -68,17 +68,17 @@ def create(num, mass, x, y, vx, vy):
     global NUM, MASS, R, X, Y, VX, VY, COLOR
 
     NUM = np.append(NUM, num)
-    MASS = np.append(MASS, mass)                       # 质量
-    r = np.cbrt(mass/den/math.pi*0.75)      # 计算半径
-    R = np.append(R, r)                             # 半径
-    X = np.append(X, x)                             # 横坐标
-    Y = np.append(Y, y)                             # 纵坐标
-    VX = np.append(VX, vx)                           # 速度X分量
-    VY = np.append(VY, vy)                           # 速度Y分量
+    MASS = np.append(MASS, mass)                # 质量
+    r = np.cbrt(mass/den/math.pi*0.75)
+    R = np.append(R, r)                         # 半径
+    X = np.append(X, x)                         # 横坐标
+    Y = np.append(Y, y)                         # 纵坐标
+    VX = np.append(VX, vx)                      # 速度X分量
+    VY = np.append(VY, vy)                      # 速度Y分量
     col = (random.randint(30, 255),
                 random.randint(30, 255),
-                random.randint(30, 255))    # 颜色
-    COLOR.append(col)
+                random.randint(30, 255))
+    COLOR.append(col)                           # 颜色
 
 def move_pos():
     global X, Y, VX, VY
@@ -115,25 +115,25 @@ def check_collision():
     """
     ones = np.ones((body_count,body_count))
 
-    DIS = np.sqrt( (X*ones - (X*ones).T)**2 + (Y*ones - (Y*ones).T)**2 )
-    RR = R*ones + (R*ones).T
+    DIS = np.sqrt( (X*ones - (X*ones).T)**2 + (Y*ones - (Y*ones).T)**2 )    # 距离阵
+    RR = R*ones + (R*ones).T                                                # 半径之和阵
 
-    COLLIDE = DIS <= RR
-    collide_event_list = []
+    COLLIDE = DIS <= RR             # 用于检测两颗星系是否发生碰撞的二维布尔矩阵
+    collide_event_list = []         # 用于存储每一组碰撞事件的列表
 
     for line in COLLIDE:
-        if len(np.nonzero(line)[0]) == 1: continue
+        if len(np.nonzero(line)[0]) == 1: continue               # 当矩阵中仅有对角元为True时，该星未发生碰撞
 
-        line = list(np.nonzero(line)[0])
+        line = list(np.nonzero(line)[0])                         # 获得与该星碰撞的所有星体的索引（包括该星）
 
-        for index, old_line in enumerate(collide_event_list):
-            if set(old_line) & set(line):
+        for index, old_line in enumerate(collide_event_list):    # 遍历已知碰撞事件，若与当前事件存在交集，则合并事件
+            if set(old_line) & set(line):                        # （采用集合的交、并操作完成）
                 line = list(set(old_line) | set(line))
-                collide_event_list[index] = []
+                collide_event_list[index] = []                   # 由于collide_event_list还处在遍历当中，不能删除元素，只能先设为空集
 
         collide_event_list.append(line)
 
-    collide_event_list = [i for i in collide_event_list if i]
+    collide_event_list = [i for i in collide_event_list if i]    # 统一删除collide_event_list中的空集
 
     return collide_event_list
 
@@ -151,12 +151,12 @@ def collision(collide_event_list):
 
     for collide_body_list in collide_event_list:
 
-        #判断当前碰撞组合中最大星体
+        # 判断当前碰撞组合中最大星体
         max_body = collide_body_list[0]
         for index in collide_body_list:
             if MASS[index] > MASS[max_body]: max_body = index
     
-        #计算合并后星体的
+        # 计算合并后星体的各项参数
         new_mass = np.sum(MASS[collide_body_list])
         new_x = np.sum(X[collide_body_list] * 
                        MASS[collide_body_list]) / new_mass
@@ -167,7 +167,7 @@ def collision(collide_event_list):
         new_vy = np.sum(VY[collide_body_list] * 
                         MASS[collide_body_list]) / new_mass
         
-        #处理各个list的max_body
+        # 将新参数赋予各个list的max_body
         MASS[max_body] = new_mass
         X[max_body] = new_x
         Y[max_body] = new_y
@@ -180,9 +180,13 @@ def collision(collide_event_list):
 
         body_to_delete.extend(dead_body)
         
-        print("Collide happens! Body", NUM[body_to_delete] + 1, "was eaten by", NUM[max_body] + 1, "!\n")
+        print("\rCollide happens! Body", 
+        	  NUM[body_to_delete[0]] + 1, 
+        	  "was eaten by", 
+        	  NUM[max_body] + 1, 
+        	  "!    ", end = "", flush = True)
     
-    #Notice! 要降序排列body_to_delete列表，不然在删除最后一个球的时候会出现越界！
+    # Notice! 要降序排列body_to_delete列表，不然在删除最后一个球的时候会出现越界！
     body_to_delete.sort(reverse = True)
 
     for index in body_to_delete:
@@ -215,14 +219,14 @@ if __name__ == '__main__':
     
     for i in range(max_count):
         create(i,
-               random.randint(100, 500),           # 初始质量
+               random.randint(100, 500),                   # 初始质量
                random.randint(0, width),
-               random.randint(0, height),         # 初始坐标
+               random.randint(0, height),                  # 初始坐标
                random.randint(-120, 120)/100,
-               random.randint(-120, 120)/100)     # 初始速度
+               random.randint(-120, 120)/100)              # 初始速度
     
-    #create(0, 10000, middle[0], middle[1], 0, 0)          #太阳！
-    #create(1, 10, middle[0]+100, middle[1], 0, -1.5)      #水星！
+    #create(0, 10000, middle[0], middle[1], 0, 0)          # 太阳！
+    #create(1, 10, middle[0]+100, middle[1], 0, -1.5)      # 水星！
     body_count = len(NUM)
 
     while True:
