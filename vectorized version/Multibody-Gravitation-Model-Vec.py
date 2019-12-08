@@ -5,7 +5,7 @@
 Created on Sun Sept 1 21:45:16 2019
 
 @author: _Mumu, Squirtle
-Environment: py37 with pygame
+Environment: Python3.7 with OpenCV3.4.6
 """
 
 import random, math, time

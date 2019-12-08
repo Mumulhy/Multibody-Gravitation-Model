@@ -14,7 +14,7 @@ https://github.com/morningyet/simulink_universe_gravitation
 
 语言：Python3
 
-环境：pygame 1.9.6、numpy 1.16.2
+环境：PyGame 1.9.6、NumPy 1.16.2、OpenCV 3.4.6
 
 最新版本：0.1.0
 
