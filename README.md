@@ -1,6 +1,6 @@
 # Multibody-Gravitation-Model
 
-Author：_Mumu、Squirtle
+Author：_Mumu、Hyspoo
 
 参考：
 
